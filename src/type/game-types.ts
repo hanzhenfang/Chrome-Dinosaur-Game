@@ -6,5 +6,5 @@ export enum GameStatus {
 
 export enum GameConfig {
   TREE_VELOCITY = 20,
-  DINOSAUR_JUMP_DISTANCE = 130,
+  DINOSAUR_JUMP_DISTANCE = 50,
 }

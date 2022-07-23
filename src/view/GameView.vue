@@ -38,15 +38,16 @@ const dinosaurStyle = computed(() => {
  */
 function dinosaurJump() {
   if (gameStatus.value === GameStatus.RUNNING) {
-    if (isJump.value ||dinosaurTranslate.value !== 0) {
+    let timeId
+    if (isJump.value) {
       return null;
     }
     isJump.value = true;
-    dinosaurTranslate.value = -GameConfig.DINOSAUR_JUMP_DISTANCE;
+    dinosaurTranslate.value = -150;
     setTimeout(() => {
       dinosaurTranslate.value = 0;
       isJump.value = false;
-    }, 1000);
+    },1000);
   }
 }
 
@@ -65,13 +66,11 @@ function gameStart() {
   gameStatus.value = GameStatus.RUNNING;
   timeID.value = setInterval(() => {
     updateGameStatus();
-
-    console.log("dinosaurTranslate.value", dinosaurTranslate.value);
   }, 100);
 }
 
 onMounted(() => {
-  console.log("tree", tree.value?.offsetLeft);
+  window.addEventListener("keyup",dinosaurJump)
 });
 </script>
 
@@ -93,6 +92,7 @@ onMounted(() => {
   height: 500px;
   border: 2px solid black;
   position: relative;
+  overflow: hidden;
 }
 
 #dinosaur {
